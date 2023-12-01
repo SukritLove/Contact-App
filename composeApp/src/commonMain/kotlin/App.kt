@@ -15,21 +15,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import contacts.data.SqlDelightContactDataSource
 import contacts.presentation.ContactListScreen
 import contacts.presentation.ContactListViewModel
 import contacts.presentation.component.ContactListItem
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
+import di.AppModule
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun App() {
+fun App(appModule: AppModule) {
     MaterialTheme {
         val viewModel = getViewModel(
             key = "contact-list-screen",
-            factory = viewModelFactory { ContactListViewModel() }
+            factory = viewModelFactory { ContactListViewModel(appModule.contactDataSource) }
         )
         val state by viewModel.state.collectAsState()
         Surface(modifier = Modifier.fillMaxSize()) {

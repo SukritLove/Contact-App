@@ -5,7 +5,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
-
+    alias(libs.plugins.sqlDelight.plugin)
+    alias(libs.plugins.kotlinX.serialization.plugin)
 }
 
 kotlin {
@@ -16,9 +17,9 @@ kotlin {
             }
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -29,17 +30,19 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui)
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.android.driver)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.sqlite.driver)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -48,13 +51,24 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
 
-
             implementation(libs.mvvm.core)
             implementation(libs.mvvm.compose)
             implementation(libs.mvvm.flow)
             implementation(libs.mvvm.flow.compose)
             implementation(libs.kotlinx.datetime)
 
+            implementation(libs.runtime)
+            implementation(libs.coroutines.extensions)
+        }
+        iosMain.dependencies {
+            implementation(libs.native.driver)
+        }
+    }
+}
+sqldelight {
+    databases {
+        create("ContactDatabase") {
+            packageName.set("org.example.sqldelight.database")
         }
     }
 }
@@ -99,6 +113,7 @@ android {
     }
 }
 dependencies {
+
 
 }
 

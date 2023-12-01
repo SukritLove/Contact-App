@@ -32,6 +32,12 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0-alpha03" }
+mvvm-core = { group = "dev.icerock.moko", name = "mvvm-core", version = "0.16.1" }
+mvvm-compose = { group = "dev.icerock.moko", name = "mvvm-compose", version = "0.16.1" }
+mvvm-flow = { group = "dev.icerock.moko", name = "mvvm-flow", version = "0.16.1" }
+mvvm-flow-compose = { group = "dev.icerock.moko", name = "mvvm-flow-compose", version = "0.16.1" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.4.1" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

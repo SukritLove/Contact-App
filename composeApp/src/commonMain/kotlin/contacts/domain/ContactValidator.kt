@@ -23,7 +23,7 @@ object ContactValidator {
 
         if (contact.phoneNumber.isBlank()) {
             result = result.copy(
-                lastNameError = "The phone number can't be empty"
+                phoneNumberError = "The phone number can't be empty"
             )
         }
 
